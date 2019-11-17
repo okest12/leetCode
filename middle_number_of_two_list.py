@@ -13,7 +13,7 @@ def middle_number(s1, s2):
     second_middle_offset = (len_a + len_b + 1) % 2
     i = lo
     j = len_half - i - 1
-    if (i == (len_a - 1) and a[i] < b[j]) or (i == 0 and a[i] > b[j + 1]):
+    if (i == (len_a - 1) and j >= 0 and a[i] < b[j]) or (i == 0 and a[i] > b[j + 1]):
         result = b[j: j + 2]
     else:
         result = sorted(a[i:i + 2] + b[len_half - i: len_half - i + 2])
