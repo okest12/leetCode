@@ -12,12 +12,12 @@ def middle_number(s1, s2):
             lo = i + 1
     second_middle_offset = (len_a + len_b + 1) % 2
     i = lo
-    j = len_half - i - 1
-    if (i == (len_a - 1) and j >= 0 and a[i] < b[j]) or (i == 0 and a[i] > b[j + 1]):
-        result = b[j: j + 2]
+    #if i == 0 and (len_half + 1 < len_b) and (a[i] > b[len_half + 1]):
+        #result = b[len_half:len_half+2]
+    if i == (len_a - 1) and (len_half - len_a >= 0) and (a[i] < b[len_half - len_a]):
+        result = b[len_half - len_a: len_half - len_a + 2]
     else:
         result = sorted(a[i:i + 2] + b[len_half - i: len_half - i + 2])
-    print(result)
     return (result[0] + result[second_middle_offset]) / 2
 
 
@@ -45,9 +45,10 @@ def test(size):
 
 
 test(10)
-# print("Expected:2, Actual:", middle_number([2], [1,3]))  #2
-# print("Expected:2.5, Actual:", middle_number([1,2], [3,4]))  #2, 3
-# print("Expected:16, Actual:", middle_number([1,12,15,26,38], [2,13,17,30,45]))  #15, 17
-# print("Expected:17, Actual:", middle_number([1,12,15,26,38], [2,13,17,30,45,50])) #17
-# print("Expected:10.5, Actual:", middle_number([1,2,5,6,8], [13,17,30,45,50]))  #8, 13
-# print("Expected:9.5, Actual:", middle_number([1,2,5,6,8,9,10], [13,17,30,45,50]))  #9, 10
+test(9)
+print("Expected:2, Actual:", middle_number([2], [1,3]))  #2
+print("Expected:2.5, Actual:", middle_number([1,2], [3,4]))  #2, 3
+print("Expected:16, Actual:", middle_number([1,12,15,26,38], [2,13,17,30,45]))  #15, 17
+print("Expected:17, Actual:", middle_number([1,12,15,26,38], [2,13,17,30,45,50])) #17
+print("Expected:10.5, Actual:", middle_number([1,2,5,6,8], [13,17,30,45,50]))  #8, 13
+print("Expected:9.5, Actual:", middle_number([1,2,5,6,8,9,10], [13,17,30,45,50]))  #9, 10
