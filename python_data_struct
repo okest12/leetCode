@@ -1,0 +1,200 @@
+Python常用的几种数据结构-链表，数组，字典
+1、产生n个全为1的数组
+a=[1]*n
+2、字符数字转化
+int('12')
+float('12.5')
+str(123.45)
+ASCII码转为相应的字符：chr(97)
+字符转化为相应的ASCII码：ord('a')
+3、三元运算
+b = 100
+a = 10 if b>0 else 5 #a = 10
+a = 100 if b<0 else 5 # a = 5
+
+4、python数组的使用
+
+4-1、Python的数组分三种类型：
+(1) list 普通的链表，初始化后可以通过特定方法动态增加元素。
+定义方式：arr = [元素]
+
+(2) Tuple 固定的数组，一旦定义后，其元素个数是不能再改变的。
+定义方式：arr = (元素)
+
+(2) Dictionary 词典类型， 即是Hash数组。
+定义方式：arr = {元素k:v}
+
+4-2、下面具体说明这些数组的使用方法和技巧：
+
+(1) list 链表数组
+a、定义时初始化
+a = [1,2,[1,2,3]]
+
+b、定义时不初始化
+一维数组：
+arr = []
+
+多维数组：
+arr = [i for i in range(3), 1,[]] #注意， i for in xx 这个必须放在第一个位置，否则要先定义i，
+arr = [[0,1,2],1,[]]
+
+如:
+arr = [i for i in range(5), j for j in range(5), []]
+这是错误的
+i = 0
+j = 0
+arr = [i for i in range(5), j for j in range(5), []]
+这是正确的(需要初始化i、j)
+
+c、del 语句 和 : 的用法
+可以用 start : end 表示数组里的一个区间 ( i >= start and i < end)
+del 删除数组里的指定元素
+如： del arr[0]
+del arr[0, 2]
+newarr = arr[0, 2]
+
+d、遍历数组：
+for k, v in enumerate(arr):
+print k, v
+
+e、增加元素：
+一维
+arr.append('aaa')
+二维
+arr[0].append('aaa')
+如果要在任意位置插入用 arr.insert(n, 值)
+此外还有一种特殊的用法是：
+arr += [数组元素]
+在不指定下标的情况下，是允许用 += 增加数组元素的。
+
+(2) Tuple 固定数组
+Tuple 是不可变 list，一旦创建了一个 tuple 就不能以任何方式改变它。
+下面拿具体示例说明：
+>>> t = ("a", "b", "c", "d", "e") #[1] 用小括号包围来定义
+>>> t
+('a', 'b', 'c', 'd', 'e')
+>>> t[0] #[2] 直接列出某下标的元素
+'a'
+>>> t[-1] #[3] 负数表示，从后面倒数的索引 -1 为倒数第一个， 0是顺数第一个
+'example'
+>>> t[1:3] #[4] 这里 1:3 是 i>=1 and i<3 的区间
+('b', 'mpilgrim')
+
+Tuple 没有的方法：
+[1] 不能向 tuple 增加元素，没有 append 、 extend 、insert 等方法。
+[2] 不能从 tuple 删除元素，没有 remove 或 pop 方法。
+[3] 不能在 tuple 中查找元素，没有 index 方法（index是查找而不是索引，索引直接用下标即可，如：t[0]）。
+
+使用 tuple 的好处：
+* Tuple 比 list 操作速度快。如果您定义了一个值的常量集, 并且唯一要用它做的是不断地遍历它, 请使用 tuple 代替 list。
+* 如果对不需要修改的数据进行 “写保护”, 可以使代码更安全。使用 tuple 而不是 list 如同拥有一个隐含的 assert 语句, 说明这一数据是常量。如果必须要改变这些值, 则需要执行 tuple 到 list 的转换 (需要使用一个特殊的函数)。
+* 还记得我说过 dictionary keys 可以是字符串, 整数和 “其它几种类型”吗? Tuples 就是这些类型之一。 Tuples 可以在 dictionary 中被用做 key, 但是 list 不行。实际上, 事情要比这更复杂。Dictionary key 必须是不可变的。Tuple 本身是不可改变的, 但是如果您有一个 list 的 tuple, 那就认为是可变的了， 用做 dictionary key 就是不安全的。只有字符串, 整数或其它对 dictionary 安全的 tuple 才可以用作 dictionary key。
+
+Tuple 可以转换成 list， 反之亦然。
+转换方式为：
+t = list( t )
+反之：
+arr = tuple( arr )
+
+(3) Dictionary (哈希数组)词典数组
+
+#Dictionary 的用法比较简单，它可以存储任意值，并允许是不同类型的值，下面实例来说明：
+#下面例子中 a 是整数， b 是字符串, c 是数组，这个例子充分说明哈希数组的适用性。
+dict_arr = {'a': 100, 'b':'boy', 'c':['o', 'p', 'q']}
+
+#可以直接增加一个元素，如果同名，则会改变原来的key的元素的值
+dict_arr['d'] = 'dog'
+
+#输出所有的key
+print dict_arr.keys()
+
+#输出所有的value
+print dict_arr.values()
+
+#遍历数组
+for k in dict_arr:
+　　v = dict_arr.get(k)
+list的方法
+L.append(var) #追加元素
+L.insert(index,var)
+L.pop(var) #返回最后一个元素，并从list中删除之
+L.remove(var) #删除第一次出现的该元素
+L.count(var) #该元素在列表中出现的个数
+L.index(var) #该元素的位置,无则抛异常
+L.extend(list) #追加list，即合并list到L上
+L.sort() #排序
+L.reverse() #倒序
+list 操作符:,+,*，关键字del
+a[1:] #片段操作符，用于子list的提取
+[1,2]+[3,4] #为[1,2,3,4]。同extend()
+[2]*4 #为[2,2,2,2]
+del L[1] #删除指定下标的元素
+del L[1:3] #删除指定下标范围的元素
+list的复制
+L1 = L #L1为L的别名，用C来说就是指针地址相同，对L1操作即对L操作。函数参数就是这样传递的
+L1 = L[:] #L1为L的克隆，即另一个拷贝。
+
+list comprehension
+[ <expr1> for k in L if <expr2> ]
+
+5、dictionary： 字典（即C++标准库的map）
+dict = {‘ob1′:’computer’, ‘ob2′:’mouse’, ‘ob3′:’printer’}
+每一个元素是pair，包含key、value两部分。key是Integer或string类型，value 是任意类型。
+键是唯一的，字典只认最后一个赋的键值。
+
+dictionary的方法
+D.get(key, 0) #同dict[key]，多了个没有则返回缺省值，0。[]没有则抛异常
+D.has_key(key) #有该键返回TRUE，否则FALSE
+D.keys() #返回字典键的列表
+D.values()
+D.items()
+
+D.update(dict2) #增加合并字典
+D.popitem() #得到一个pair，并从字典中删除它。已空则抛异常
+D.clear() #清空字典，同del dict
+D.copy() #拷贝字典
+D.cmp(dict1,dict2) #比较字典，(优先级为元素个数、键大小、键值大小)
+#第一个大返回1，小返回-1，一样返回0
+
+dictionary的复制
+dict1 = dict #别名
+dict2=dict.copy() #克隆，即另一个拷贝。
+
+6、string： 字符串（即不能修改的字符list）
+str = “Hello My friend”
+字符串是一个整 体。如果你想直接修改字符串的某一部分，是不可能的。但我们能够读出字符串的某一部分。
+子字符串的提取
+str[:6]
+字符串包含 判断操作符：in，not in
+“He” in str
+“she” not in str
+
+string模块，还提供了很多方法，如
+S.find(substring, [start [,end]]) #可指范围查找子串，返回索引值，否则返回-1
+S.rfind(substring,[start [,end]]) #反向查找
+S.index(substring,[start [,end]]) #同find，只是找不到产生ValueError异常
+S.rindex(substring,[start [,end]])#同上反向查找
+S.count(substring,[start [,end]]) #返回找到子串的个数
+
+S.lowercase()
+S.capitalize() #首字母大写
+S.lower() #转小写
+S.upper() #转大写
+S.swapcase() #大小写互换
+
+S.split(str, ‘ ‘) #将string转list，以空格切分
+S.join(list, ‘ ‘) #将list转string，以空格连接
+
+处理字符串的内置函数
+len(str) #串长度
+cmp(“my friend”, str) #字符串比较。第一个大，返回1
+max(‘abcxyz’) #寻找字符串中最大的字符
+min(‘abcxyz’) #寻找字符串中最小的字符
+
+string的转换
+
+oat(str) #变成浮点数，float(“1e-1″) 结果为0.1
+int(str) #变成整型， int(“12″) 结果为12
+int(str,base) #变成base进制整型数，int(“11″,2) 结果为2
+long(str) #变成长整型，
+long(str,base) #变成base进制长整型
